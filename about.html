@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Us | Fragrance Flow</title>
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  body {
+    background: linear-gradient(135deg, #fce3ec, #f9f6f2);
+    overflow-x: hidden;
+    color: #333;
+  }
+
+  /* Floating fragrance bubbles */
+  .bubble {
+    position: fixed;
+    bottom: -100px;
+    background: rgba(255, 182, 193, 0.4);
+    border-radius: 50%;
+    animation: floatUp 10s infinite ease-in;
+  }
+
+  @keyframes floatUp {
+    from { transform: translateY(0) scale(1); opacity: 1; }
+    to { transform: translateY(-120vh) scale(1.3); opacity: 0; }
+  }
+
+  header {
+    text-align: center;
+    padding: 60px 20px 30px;
+    background: linear-gradient(135deg, #f8cdda, #f6e7d7);
+    border-bottom-left-radius: 50% 15%;
+    border-bottom-right-radius: 50% 15%;
+  }
+
+  header h1 {
+    font-size: 3rem;
+    color: #5e3d3d;
+    letter-spacing: 2px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+
+  header p {
+    color: #6d4c41;
+    font-size: 1.2rem;
+    margin-top: 10px;
+  }
+
+  section {
+    max-width: 1000px;
+    margin: 60px auto;
+    padding: 20px 30px;
+    line-height: 1.8;
+  }
+
+  .about {
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    padding: 40px;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+  }
+
+  .about:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 35px rgba(0,0,0,0.15);
+  }
+
+  .about h2 {
+    color: #8e4a49;
+    font-size: 2rem;
+    margin-bottom: 15px;
+  }
+
+  .about p {
+    color: #555;
+    font-size: 1.1rem;
+  }
+
+  .team {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-top: 40px;
+  }
+
+  .member {
+    background: #fffafc;
+    padding: 20px;
+    border-radius: 15px;
+    width: 350px;
+    text-align: center;
+    margin: 15px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
+  }
+
+  .member:hover {
+    transform: translateY(-10px);
+  }
+
+  .member img {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 15px;
+  }
+
+  .member h3 {
+    color: #6d4c41;
+    margin-bottom: 5px;
+  }
+
+  .member p {
+    font-size: 0.9rem;
+    color: #7b5c56;
+  }
+
+  footer {
+    text-align: center;
+    padding: 30px;
+    font-size: 0.9rem;
+    color: #6d4c41;
+    background: linear-gradient(135deg, #f6e7d7, #f8cdda);
+    margin-top: 50px;
+  }
+
+  /* Scroll reveal animation */
+  .hidden {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 1s ease, transform 1s ease;
+  }
+
+  .show {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Fragrance Flow</h1>
+  <p>Where Every Scent Tells a Story ✨</p>
+</header>
+
+<section class="about hidden">
+  <h2>Our Story</h2>
+  <p>Welcome to <strong>Fragrance Flow</strong>, your ultimate destination for luxury perfumes and signature scents. 
+  Founded with passion and elegance, our goal is to bring you an enchanting fragrance experience that captures emotions and creates memories. 
+  From timeless classics to modern blends, we celebrate individuality through the power of scent.</p>
+</section>
+
+<section class="about hidden">
+  <h2>Our Mission</h2>
+  <p>We aim to connect people through the art of perfumery — where every bottle speaks a language of confidence, elegance, and charm. 
+  Our collection is curated from the world's finest brands, ensuring quality and authenticity. 
+  Whether it’s a gift for someone special or your next signature scent, Fragrance Haven helps you find your true essence.</p>
+</section>
+
+<section class="about hidden">
+  <h2>Meet Our Team</h2>
+  <div class="team">
+    <div class="member">
+      <img src="rutuja.jpg" alt="Founder">
+      <h3>Rutuja </h3>
+      <p></p>
+    </div>
+    <div class="member">
+      <img src="pankaj.jpg" alt="Creative Director">
+      <h3>Pankaj</h3>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © 2025 Fragrance Flow| Designed with 💖 for the love of perfume.
+</footer>
+
+<script>
+  // Scroll Reveal Animation
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('show');
+      }
+    });
+  });
+
+  document.querySelectorAll('.hidden').forEach(el => observer.observe(el));
+
+  // Floating Bubbles Effect
+  function createBubble() {
+    const bubble = document.createElement('div');
+    bubble.classList.add('bubble');
+    const size = Math.random() * 60 + 20 + 'px';
+    bubble.style.width = size;
+    bubble.style.height = size;
+    bubble.style.left = Math.random() * window.innerWidth + 'px';
+    document.body.appendChild(bubble);
+    setTimeout(() => bubble.remove(), 10000);
+  }
+
+  setInterval(createBubble, 500);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,635 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Perfume Store</title>
+
+  <style>
+    /* Reset */
+    * {margin:0; padding:0; box-sizing:border-box;}
+    body {font-family: 'Poppins', sans-serif;}
+
+    /* Navbar */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 40px;
+      background: #fff;
+      border-bottom: 1px solid #eee;
+    }
+
+    /* Left + Right Menus */
+    .nav-left, .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+
+    .nav-left a, .nav-right a {
+      text-decoration: none;
+      font-size: 14px;
+      letter-spacing: 2px;
+      color: #111;
+      font-weight: 500;
+      position: relative;
+    }
+
+    /* Dropdown arrow */
+    .nav-left a.dropdown::after,
+    .nav-right a.dropdown::after {
+      content: "";
+      font-size: 10px;
+      margin-left: 6px;
+    }
+
+    /* Logo Center */
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .logo img {
+      height: 36px;
+    }
+    .logo span {
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: 2px;
+    }
+
+    /* Account Icon */
+    .account {
+      font-size: 20px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <!-- Left Menu -->
+    <div class="nav-left">
+      <a href="">HOME</a>
+      <a href="#" class="dropdown">MEN</a>
+      <a href="#" class="dropdown">WOMEN</a>
+    </div>
+
+    <!-- Logo -->
+    <div class="logo">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/8/89/HD_transparent_picture.png" alt="Logo"> 
+      <span>KSHITIJ 24x7</span>
+    </div>
+
+    <!-- Right Menu -->
+    <div class="nav-right">
+      <a href="#" class="dropdown">BRANDS</a>
+      <a href="#" class="dropdown">SALE</a>
+      <a href="#">NEW</a>
+      <span class="account">👤</span>
+    </div>
+  </nav>
+
+<style>
+ :root{
+  --accent: #e65b1e;
+  --muted: #777;
+  --bg: #fafafa;
+  --card: #fff;
+  --maxw: 1200px;
+  --cart-width: 380px;
+  --cart-offset: 420px;
+}
+
+/* reset / base */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: Inter, "Segoe UI", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: var(--bg);
+  color: #111;
+}
+
+/* header / layout */
+header{
+  background: #fff;
+  padding: 18px 20px;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo{
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.container{
+  max-width: var(--maxw);
+  margin: 32px auto;
+  padding: 0 20px;
+}
+
+.title{
+  font-size: 32px;
+  text-align: center;
+  letter-spacing: 2px;
+  margin-bottom: 28px;
+}
+
+/* product grid */
+.grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 28px;
+}
+
+.card{
+  background: var(--card);
+  padding: 18px;
+  border-radius: 10px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.03);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* image: ensure it stays contained and accessible */
+.prod-img{
+  width: 140px;
+  height: 140px;
+  background: #f6f6f6;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 14px;
+  overflow: hidden;
+}
+
+.prod-img img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.prod-name{
+  font-size: 14px;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  color: #111;
+}
+
+.price{
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.add-btn{
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  padding: 10px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* cart fixed button */
+.cart-fixed{
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  background: var(--accent);
+  color: #fff;
+  border-radius: 50px;
+  padding: 12px 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 8px 28px rgba(0,0,0,0.15);
+  z-index: 1200;
+  border: 0;
+}
+
+.cart-fixed:focus { outline: 3px solid rgba(0,0,0,0.08); outline-offset: 2px; }
+
+.cart-count{
+  background: #fff;
+  color: var(--accent);
+  padding: 6px 8px;
+  border-radius: 12px;
+  font-weight: 700;
+}
+
+/* cart side panel - use transform for smoother animations */
+.cart-panel{
+  position: fixed;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: var(--cart-width);
+  background: #fff;
+  box-shadow: -12px 0 30px rgba(0,0,0,0.08);
+  transform: translateX(var(--cart-offset)); /* hidden by default */
+  transition: transform .28s ease;
+  z-index: 1300;
+  display: flex;
+  flex-direction: column;
+  will-change: transform;
+}
+
+.cart-panel.open{
+  transform: translateX(0);
+}
+
+.cart-header{
+  padding: 20px;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cart-body{
+  flex: 1;
+  padding: 16px;
+  overflow: auto;
+}
+
+.cart-footer{
+  padding: 16px;
+  border-top: 1px solid #eee;
+}
+
+.cart-item{
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.cart-item img{
+  width: 56px;
+  height: 56px;
+  object-fit: contain;
+  border-radius: 8px;
+  background: #fafafa;
+}
+
+.qty-control{
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.qty-btn{
+  padding: 6px 8px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  background: #fff;
+  cursor: pointer;
+}
+
+/* primary CTA on checkout */
+.checkout-btn{
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  background: #0a8f6e;
+  color: #fff;
+  border: none;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.small{
+  font-size: 13px;
+  color: var(--muted);
+}
+
+/* modal (checkout form) */
+.modal-backdrop{
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 1400;
+}
+
+.modal-backdrop.open{
+  display: flex;
+}
+
+.modal{
+  background: #fff;
+  padding: 18px;
+  border-radius: 12px;
+  max-width: 480px;
+  width: 95%;
+}
+
+label{ display: block; font-size: 13px; margin-bottom: 6px; }
+
+input, textarea, select{
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+  font: inherit;
+}
+
+/* layout helpers */
+.flex{ display: flex; gap: 10px; }
+
+@media (max-width: 700px){
+  :root{
+    --cart-width: 100%;
+    --cart-offset: 100%;
+  }
+
+  .title {
+    font-size: 22px;
+    margin-bottom: 18px;
+  }
+
+  .prod-img { width: 120px; height: 120px; }
+}
+
+/* footer */
+footer{
+  padding: 18px;
+  text-align: center;
+  color: var(--muted);
+  margin-top: 40px;
+}
+
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">KSHITIJ 24x7</div>
+  <div class="small">7 day returns on sealed products</div>
+</header>
+
+<main class="container">
+  <h1 class="title">Price 6000 - 4500 for Women (Sample)</h1>
+
+  <div class="grid" id="products"></div>
+
+  <footer>Demo store • Responsive • UPI payment demo</footer>
+</main>
+
+<!-- cart fixed button -->
+<button class="cart-fixed" id="openCartBtn">
+  🛍 Cart <span class="cart-count" id="cartCount">0</span>
+</button>
+
+<!-- cart side panel -->
+<aside class="cart-panel" id="cartPanel" aria-hidden="true">
+  <div class="cart-header">
+    <strong>Your Cart</strong>
+    <button id="closeCartBtn" title="Close">✕</button>
+  </div>
+  <div class="cart-body" id="cartItems">
+    <div class="small">Cart is empty</div>
+  </div>
+  <div class="cart-footer">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+      <div><strong>Subtotal</strong></div>
+      <div><strong id="cartSubtotal">₹0</strong></div>
+    </div>
+    <div class="small" style="margin-bottom:12px">Taxes and UPI charges (if any) are not included.</div>
+    <button class="checkout-btn" id="checkoutBtn">Checkout</button>
+  </div>
+</aside>
+
+<!-- modal for checkout form -->
+<div class="modal-backdrop" id="modalBackdrop">
+  <div class="modal" role="dialog" aria-modal="true">
+    <h3>Enter your details</h3>
+    <form id="checkoutForm">
+      <label>Full name</label>
+      <input required name="customerName" placeholder="Your name" />
+      <label>Mobile number</label>
+      <input required name="mobile" placeholder="e.g. 9876543210" pattern="[0-9]{10}" />
+      <label>Email</label>
+      <input required type="email" name="email" placeholder="you@example.com" />
+      <label>Address</label>
+      <textarea required name="address" rows="2" placeholder="House, street, etc."></textarea>
+      <label>Pincode</label>
+      <input required name="pincode" pattern="[0-9]{6}" placeholder="400001" />
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:6px">
+        <div><strong>Total:</strong></div>
+        <div><strong id="checkoutTotal">₹0</strong></div>
+      </div>
+      <div style="margin-top:12px;display:flex;gap:8px">
+        <button type="submit" class="checkout-btn" style="flex:1">Pay with UPI</button>
+        <button type="button" id="cancelCheckout" style="flex:1;background:#ddd;color:#111;border:none;border-radius:8px">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+
+const PRODUCTS = [
+  { id: 'p1', name: "Victoria's Secret Bombshell EDP for Women", price: 6499, img: "https://i.imgur.com/8b4Yt4x.png" },
+  { id: 'p2', name: "Calvin Klein Eternity Moment 100ml", price: 4800, img: "https://i.imgur.com/KiD3W6p.png" },
+  { id: 'p3', name: "Calvin Klein Eternity Eau de Parfum 100ml", price: 5200, img: "https://i.imgur.com/3e2X0K6.png" },
+  { id: 'p4', name: "Calvin Klein Euphoria 100ml", price: 6050, img: "https://i.imgur.com/7q9mF2y.png" },
+  { id: 'p5', name: "Calvin Klein Euphoria 100ml", price: 6050, img: "https://i.imgur.com/7q9mF2y.png" },
+  { id: 'p5', name: "Calvin Klein Euphoria 100ml", price: 6050, img: "https://i.imgur.com/7q9mF2y.png" },
+  { id: 'p5', name: "Calvin Klein Euphoria 100ml", price: 6050, img: "https://i.imgur.com/7q9mF2y.png" }
+];
+
+// ---------- CONFIG ----------
+const MERCHANT_UPI = "merchant@upi"; // <- replace with your UPI id
+const MERCHANT_NAME = "Perfume Store"; // merchant name for UPI link
+const PROCESS_ORDER_ENDPOINT = "process_order.php"; // PHP endpoint (optional)
+// ----------------------------
+
+/* simple currency format */
+function rupee(n){
+  return '₹' + Number(n).toLocaleString('en-IN');
+}
+
+/* cart persisted in localStorage */
+let cart = JSON.parse(localStorage.getItem('cart_demo')) || {}; // { productId: qty }
+
+function saveCart(){ localStorage.setItem('cart_demo', JSON.stringify(cart)); updateCartUI(); }
+
+function addToCart(id, qty=1){
+  cart[id] = (cart[id] || 0) + qty;
+  saveCart();
+  openCart();
+}
+
+function setQty(id, qty){
+  if(qty <= 0) delete cart[id]; else cart[id] = qty;
+  saveCart();
+}
+
+function cartItemsArray(){
+  return Object.entries(cart).map(([id, qty])=>{
+    const p = PRODUCTS.find(x=>x.id===id);
+    if(!p) return null;
+    return { ...p, qty, lineTotal: p.price * qty };
+  }).filter(Boolean);
+}
+
+function cartSubtotal(){
+  return cartItemsArray().reduce((s,i)=>s + i.lineTotal, 0);
+}
+
+/* render products */
+const productsEl = document.getElementById('products');
+PRODUCTS.forEach(p=>{
+  const div = document.createElement('div');
+  div.className = 'card';
+  div.innerHTML = `
+    <img class="prod-img" src="${p.img}" alt="${p.name}" />
+    <div class="prod-name">${p.name}</div>
+    <div class="price">${rupee(p.price)}</div>
+    <button class="add-btn">Add to cart</button>
+  `;
+  div.querySelector('.add-btn').addEventListener('click', ()=> addToCart(p.id));
+  productsEl.appendChild(div);
+});
+
+/* cart UI */
+const cartPanel = document.getElementById('cartPanel');
+const cartCount = document.getElementById('cartCount');
+const cartItems = document.getElementById('cartItems');
+const cartSubtotalEl = document.getElementById('cartSubtotal');
+
+function updateCartUI(){
+  const items = cartItemsArray();
+  cartCount.textContent = items.reduce((s,i)=>s+i.qty,0);
+  cartSubtotalEl.textContent = rupee(cartSubtotal());
+  cartItems.innerHTML = '';
+  if(items.length === 0){
+    cartItems.innerHTML = '<div class="small">Your cart is empty.</div>';
+    return;
+  }
+  items.forEach(it=>{
+    const el = document.createElement('div');
+    el.className = 'cart-item';
+    el.innerHTML = `
+      <img src="${it.img}" alt="${it.name}">
+      <div style="flex:1">
+        <div style="font-size:14px">${it.name}</div>
+        <div class="small">${rupee(it.price)} × ${it.qty} = <strong>${rupee(it.lineTotal)}</strong></div>
+        <div style="margin-top:8px" class="qty-control">
+          <button class="qty-btn" data-action="dec">−</button>
+          <div style="min-width:28px;text-align:center">${it.qty}</div>
+          <button class="qty-btn" data-action="inc">+</button>
+          <button class="qty-btn" data-action="remove" style="margin-left:8px">Remove</button>
+        </div>
+      </div>
+    `;
+    // attach handlers
+    el.querySelector('[data-action="inc"]').addEventListener('click', ()=>{ setQty(it.id, it.qty+1); });
+    el.querySelector('[data-action="dec"]').addEventListener('click', ()=>{ setQty(it.id, it.qty-1); });
+    el.querySelector('[data-action="remove"]').addEventListener('click', ()=>{ setQty(it.id, 0); });
+    cartItems.appendChild(el);
+  });
+}
+
+/* open/close cart */
+function openCart(){ cartPanel.classList.add('open'); cartPanel.setAttribute('aria-hidden','false'); updateCartUI(); }
+function closeCart(){ cartPanel.classList.remove('open'); cartPanel.setAttribute('aria-hidden','true'); }
+
+document.getElementById('openCartBtn').addEventListener('click', openCart);
+document.getElementById('closeCartBtn').addEventListener('click', closeCart);
+/* checkout */
+const checkoutBtn = document.getElementById('checkoutBtn');
+const modalBackdrop = document.getElementById('modalBackdrop');
+const checkoutForm = document.getElementById('checkoutForm');
+const checkoutTotalEl = document.getElementById('checkoutTotal');
+const cancelCheckout = document.getElementById('cancelCheckout');
+
+checkoutBtn.addEventListener('click', ()=>{
+  const total = cartSubtotal();
+  if(total <= 0){ alert('Cart is empty'); return; }
+  checkoutTotalEl.textContent = rupee(total);
+  modalBackdrop.classList.add('open');
+});
+
+cancelCheckout.addEventListener('click', ()=> modalBackdrop.classList.remove('open'));
+
+modalBackdrop.addEventListener('click', (e)=>{
+  if(e.target === modalBackdrop) modalBackdrop.classList.remove('open');
+});
+
+/* submit checkout -> attempt to open UPI */
+checkoutForm.addEventListener('submit', async (e)=>{
+  e.preventDefault();
+  // gather customer details
+  const formData = new FormData(checkoutForm);
+  const data = {
+    customerName: formData.get('customerName'),
+    mobile: formData.get('mobile'),
+    email: formData.get('email'),
+    address: formData.get('address'),
+    pincode: formData.get('pincode'),
+    items: cartItemsArray(),
+    total: cartSubtotal()
+  };
+
+  // Optionally send to server for record
+  try {
+    await fetch(PROCESS_ORDER_ENDPOINT, {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify(data)
+    }).then(r=>r.text()).catch(()=>null);
+  } catch(err){ /* ignore server save errors in demo */ }
+
+  // Build UPI deep link
+  const amount = Number(data.total).toFixed(2);
+  // Required param pa (payee VPA), pn (payee name), am (amount), cu (currency)
+  const upiParams = new URLSearchParams({
+    pa: MERCHANT_UPI,
+    pn: MERCHANT_NAME,
+    am: amount,
+    cu: 'INR',
+    tn: `Order from ${data.customerName}`
+  });
+  const upiLink = `upi://pay?${upiParams.toString()}`;
+
+  // Try to open the UPI link (mobile will open app). If that fails, show fallback info.
+  window.location.href = upiLink;
+
+  // After triggering the intent, also show a fallback page/information
+  setTimeout(()=> {
+    // If the app wasn't opened (desktop), show a fallback alert with copyable info
+    alert(`If UPI app didn't open, please pay ₹${amount} to ${MERCHANT_UPI} (UPI). \n\nReference: Order for ${data.customerName}`);
+    modalBackdrop.classList.remove('open');
+    // clear cart on success assumption
+    cart = {};
+    saveCart();
+    closeCart();
+  }, 1200);
+});
+
+updateCartUI();
+</script>
+</body>
+</html>

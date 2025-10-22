@@ -1,0 +1,753 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Perfume Store</title>
+<style>
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    overflow-x: hidden;
+    background-color: #000;
+    color: #fff;
+  }
+
+  /* Navbar */
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: Grey;
+    padding: 10px 20px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+
+  /* Logo */
+  .logo {
+    display: flex;
+    align-items: center;
+  }
+
+  .logo img {
+    height: 50px;
+    margin-right: 10px;
+  }
+
+  .logo span {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+
+  .logo a {
+    color: white;
+    text-decoration: none;
+  }
+
+  /* Menu */
+  .nav-left, .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .nav-left a, .nav-right a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 1rem;
+    padding: 5px 10px;
+    transition: color 0.3s, background 0.3s;
+  }
+
+  .nav-left a:hover, .nav-right a:hover {
+    background-color: #fff;
+    color: #000;
+    border-radius: 5px;
+  }
+
+  /* Video Background Section */
+  .video-background {
+    position: relative;
+    height: 70vh;
+    overflow: hidden;
+  }
+
+  .video-background video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0; /* fixed */
+  }
+
+  .vignette {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 40%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+    z-index: 1; /* fixed */
+  }
+
+  .overlay-content {
+    position: relative;
+    color: white;
+    text-align: center;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2; /* fixed */
+  }
+
+  .overlay-content h1 {
+    font-size: 3rem;
+    margin: 0;
+  }
+
+  .overlay-content p {
+    font-size: 1.5rem;
+    margin-top: 10px;
+  }
+
+ 
+  
+</style>
+
+  <div class="navbar">
+
+    <div class="nav-left">
+      <a href="home.html">HOME</a>
+      <a href="mens.html">MEN</a>
+      <a href="women.html">WOMEN</a>
+    </div>
+
+<!-- Logo -->
+    <div class="logo">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/8/89/HD_transparent_picture.png" alt="Logo">
+      <span style="font-family:'Baskerville Old Face';">
+        <a href="index.html" style="color: Black; text-decoration: none;">FRAGRANCE FLOW</a>
+      </span>
+    </div>
+
+<!-- Right -->
+ <div class="nav-right">
+      <a href="about.html">About us </a>
+      <a href="feedback.html">feedback</a>
+      <a href="login.html">Login</a>
+      <span class="account">👤</span>
+    </div>
+  </div>
+
+  <!-- Video Background -->
+  <div class="video-background">
+    <video autoplay loop muted playsinline>
+      <!-- Use your file OR test with online video -->
+      <source src="v.mp4" type="video/mp4">
+    </video>
+    
+    <div class="vignette"></div>
+    
+    <div class="overlay-content">
+      <h1>Breathe Beauty, Become You....</h1>
+      <p>Your Signature Scent Awaits......</p>
+    </div>
+  </div>
+  
+  <script>
+    function navigate() {
+      let input = document.getElementById("searchInput")?.value;
+      if(input && input.trim() !== "") {
+        alert("Searching for: " + input);
+        // window.location.href = "search.html?q=" + encodeURIComponent(input);
+      }
+    }
+  </script>
+  
+<style>
+ :root{
+  --accent: #e65b1e;
+  --muted: #777;
+  --bg: #fafafa;
+  --card: #fff;
+  --maxw: 1200px;
+  --cart-width: 380px;
+  --cart-offset: 420px;
+}
+
+/* reset / base */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: Inter, "Segoe UI", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: var(--bg);
+  color: #111;
+}
+
+/* header / layout */
+header{
+  background: #fff;
+  padding: 18px 20px;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo{
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.container{
+  max-width: var(--maxw);
+  margin: 32px auto;
+  padding: 0 20px;
+}
+
+.title{
+  font-size: 32px;
+  text-align: center;
+  letter-spacing: 2px;
+  margin-bottom: 28px;
+}
+
+/* product grid */
+.grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 28px;
+}
+
+.card{
+  background: var(--card);
+  padding: 18px;
+  border-radius: 10px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.03);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* image: ensure it stays contained and accessible */
+.prod-img{
+  width: 140px;
+  height: 140px;
+  background: #f6f6f6;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 14px;
+  overflow: hidden;
+}
+
+.prod-img img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.prod-name{
+  font-size: 14px;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  color: #111;
+}
+
+.price{
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.add-btn{
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  padding: 10px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* cart fixed button */
+.cart-fixed{
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  background: var(--accent);
+  color: #fff;
+  border-radius: 50px;
+  padding: 12px 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 8px 28px rgba(0,0,0,0.15);
+  z-index: 1200;
+  border: 0;
+}
+
+.cart-fixed:focus { outline: 3px solid rgba(0,0,0,0.08); outline-offset: 2px; }
+
+.cart-count{
+  background: #fff;
+  color: var(--accent);
+  padding: 6px 8px;
+  border-radius: 12px;
+  font-weight: 700;
+}
+
+/* cart side panel - use transform for smoother animations */
+.cart-panel{
+  position: fixed;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: var(--cart-width);
+  background: #fff;
+  box-shadow: -12px 0 30px rgba(0,0,0,0.08);
+  transform: translateX(var(--cart-offset)); /* hidden by default */
+  transition: transform .28s ease;
+  z-index: 1300;
+  display: flex;
+  flex-direction: column;
+  will-change: transform;
+}
+
+.cart-panel.open{
+  transform: translateX(0);
+}
+
+.cart-header{
+  padding: 20px;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cart-body{
+  flex: 1;
+  padding: 16px;
+  overflow: auto;
+}
+
+.cart-footer{
+  padding: 16px;
+  border-top: 1px solid #eee;
+}
+
+.cart-item{
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.cart-item img{
+  width: 56px;
+  height: 56px;
+  object-fit: contain;
+  border-radius: 8px;
+  background: #fafafa;
+}
+
+.qty-control{
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.qty-btn{
+  padding: 6px 8px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  background: #fff;
+  cursor: pointer;
+}
+
+/* primary CTA on checkout */
+.checkout-btn{
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  background: #0a8f6e;
+  color: #fff;
+  border: none;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.small{
+  font-size: 13px;
+  color: var(--muted);
+}
+
+/* modal (checkout form) */
+.modal-backdrop{
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 1400;
+}
+
+.modal-backdrop.open{
+  display: flex;
+}
+
+.modal{
+  background: #fff;
+  padding: 18px;
+  border-radius: 12px;
+  max-width: 480px;
+  width: 95%;
+}
+
+label{ display: block; font-size: 13px; margin-bottom: 6px; }
+
+input, textarea, select{
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+  font: inherit;
+}
+
+/* layout helpers */
+.flex{ display: flex; gap: 10px; }
+
+@media (max-width: 700px){
+  :root{
+    --cart-width: 100%;
+    --cart-offset: 100%;
+  }
+
+  .title {
+    font-size: 22px;
+    margin-bottom: 18px;
+  }
+
+  .prod-img { width: 120px; height: 120px; }
+}
+
+/* footer */
+footer{
+  padding: 18px;
+  text-align: center;
+  color: var(--muted);
+  margin-top: 40px;
+}
+
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">  <span style="font-family: 'Bahnschrift SemiBold SemiConden';">
+    <a href="index.html" style="color: black; text-decoration: none;">FRAGRANCE FLOW</a>
+  </span></div>
+  <div class="small"><span style="font-family: 'Bahnschrift SemiBold SemiConden';">
+    <a href="index.html" style="color: black; text-decoration: none;">WORLDS BEST PERFUME BRANDS</a>
+  </span></div>
+</header>
+
+<main class="container">
+  <h1 class="title"><span style="font-family: 'Bahnschrift SemiBold SemiConden';">
+    <a href="index.html" style="color: black; text-decoration: none;">Perfumes of The Year....</a>
+  </span></h1>
+
+  <div class="grid" id="products"></div>
+
+  <footer>Demo store • Responsive • UPI payment demo</footer>
+</main>
+
+<!-- cart fixed button -->
+<button class="cart-fixed" id="openCartBtn">
+  🛍 Cart <span class="cart-count" id="cartCount">0</span>
+</button>
+
+<!-- cart side panel -->
+<aside class="cart-panel" id="cartPanel" aria-hidden="true">
+  <div class="cart-header">
+    <strong>Your Cart</strong>
+    <button id="closeCartBtn" title="Close">✕</button>
+  </div>
+  <div class="cart-body" id="cartItems">
+    <div class="small">Cart is empty</div>
+  </div>
+  <div class="cart-footer">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+      <div><strong>Subtotal</strong></div>
+      <div><strong id="cartSubtotal">₹0</strong></div>
+    </div>
+    <div class="small" style="margin-bottom:12px">Taxes and UPI charges (if any) are not included.</div>
+    <button class="checkout-btn" id="checkoutBtn">Checkout</button>
+  </div>
+</aside>
+
+<!-- Checkout Form -->
+<div class="modal-backdrop" id="modalBackdrop">
+  <div class="modal">
+    <h3>Enter your details</h3>
+    <form id="checkoutForm">
+      <label>Full name</label><input required name="customerName" />
+      <label>Mobile number</label><input required name="mobile" pattern="[0-9]{10}" />
+      <label>Email</label><input required type="email" name="email" />
+      <label>Address</label><textarea required name="address"></textarea>
+      <label>Pincode</label><input required name="pincode" pattern="[0-9]{6}" />
+      <div style="display:flex;justify-content:space-between">
+        <div><strong>Total:</strong></div>
+        <div><strong id="checkoutTotal">₹0</strong></div>
+      </div>
+      <input type="hidden" name="total" id="totalInput">
+      <div style="margin-top:12px;display:flex;gap:8px">
+        <button type="submit" class="checkout-btn" style="flex:1">Pay with UPI</button>
+        <button type="button" id="cancelCheckout" style="flex:1;background:#ddd;border:none;border-radius:8px">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+/* ---------- CONFIG ---------- */
+const MERCHANT_UPI = "merchant@upi"; // <- replace with your UPI id
+const MERCHANT_NAME = "Perfume Store"; // merchant name for UPI link
+const PROCESS_ORDER_ENDPOINT = "process_order.php"; // PHP endpoint to save order (in customers_db)
+const PRODUCTS_ENDPOINT = "products.php"; // optional: fetch product list from products DB
+/* ---------------------------- */
+
+/* simple currency format */
+function rupee(n){
+  return '₹' + Number(n).toLocaleString('en-IN');
+}
+
+/* default products (fallback if products.php is not used) */
+const PRODUCTS = [
+  { id: 'p1', name: "Calvin Klein CK One Shock Eau De Toilette", price: 5050, img: "https://www.perfume24x7.com/cdn/shop/products/CalvinKleinCKOneShockEauDeToiletteForHer200ml.jpg?v=1664546542&width=1080" },
+  { id: 'p2', name: "Jaguar Classic Black Eau De Toilette For Men 100ml", price: 2500, img: "https://www.perfume24x7.com/cdn/shop/products/jaguar_classic_black_1.jpg?v=1630333650&width=1800" },
+  { id: 'p3', name: "Giorgio Armani Acqua Di Gio Eau De Toilette For Men", price: 7700, img: "https://www.perfume24x7.com/cdn/shop/products/Giorgio_Armani_Acqua_Di_Gio_EDT_For_Men.jpg?v=1594589436&width=1800" },
+  { id: 'p4', name: "Diesel Only The Brave Eau De Toilette For Men", price: 4500, img: "https://www.perfume24x7.com/cdn/shop/products/Diesel_Only_The_Brave_EDT_B.jpg?v=1569313116&width=1800" },
+  { id: 'p5', name: "Disney Pixar Finding Dory Colonia Fresca Cool Cologne For Kids 200ML", price: 1500, img: "https://www.perfume24x7.com/cdn/shop/products/dorycologne.jpg?v=1642493974&width=1800" },
+  { id: 'p6', name: "Ducati For Men Eau De Toilette For Men 100ml", price: 3500, img: "https://www.perfume24x7.com/cdn/shop/products/Ducati_Fight_For_Me_Edt.jpg?v=1594583984&width=1800" },
+  { id: 'p7', name: "Azzaro The Most Wanted Eau De Parfum Intense For Men", price: 9800, img: "https://www.perfume24x7.com/cdn/shop/products/azzarothemostwantedintenseB.jpg?v=1677074572&width=1800" },
+  { id: 'p8', name: "Abercrombie Fitch Fierce Mens Cologne Spray", price: 9850, img: "https://www.perfume24x7.com/cdn/shop/products/Abercrombie-Fitch-Fierce-Mens-Cologne-Spray.jpg?v=1692089566&width=1800" },
+  { id: 'p9', name: "Adidas Victory League Eau De Toilette For Men 100ml", price: 799, img: "https://www.perfume24x7.com/cdn/shop/products/Adidas_Victory_League_Edt_For_Men_100ml.jpg?v=1631343173&width=1800" },
+  { id: 'p10', name: "Ajmal Amber Poivre EDP 100ml", price: 12500, img: "https://www.perfume24x7.com/cdn/shop/products/ajmalamberpoivre.jpg?v=1603034415&width=1800" },
+  { id: 'p11', name: "Armaf Club De Nuit Untold Eau De Parfum 105ML", price: 5350, img: "https://www.perfume24x7.com/cdn/shop/products/ArmafClubDeNuitUntoldEauDeParfum105mlA.jpg?v=1677566086&width=1800" },
+  { id: 'p12', name: "Bath & Body Country Apple Mist For Women 236ml", price: 1499, img: "https://www.perfume24x7.com/cdn/shop/products/BurberryWeekendmen.jpg?v=1640243166&width=1800" },
+  { id: 'p13', name: "Bentley Intense Eau De Parfum For Men 100ml", price: 4760, img: "https://www.perfume24x7.com/cdn/shop/products/BentleyIntenseEdpForMen100ml.jpg?v=1624338568&width=1800" },
+  { id: 'p14', name: "Carrera Speed Pour Femme Eau De Parfum For Women 100ML", price: 2790, img: "https://www.perfume24x7.com/cdn/shop/products/CarreraSpeedEDPForWomenA.jpg?v=1631883842&width=1800" },
+  { id: 'p15', name: "CH Men Eau De Toilette By Carolina Herrera", price: 6500, img: "https://www.perfume24x7.com/cdn/shop/products/CH_Men.jpg?v=1579587475&width=1800" },
+  { id: 'p16', name: "Chanel Chance Eau Tender Eau De Parfum For Women 100ml", price: 16700, img: "https://www.perfume24x7.com/cdn/shop/products/ChanelChanceEauTendreEauDeParfumForWomen100mlA.jpg?v=1660401378&width=1800" },
+  { id: 'p17', name: "Nomade Absolu De Parfum By Chloe Eau De Parfum For Women 75ml", price: 10620, img: "https://www.perfume24x7.com/cdn/shop/products/Untitled-1-76.jpg?v=1623069489&width=1800" },
+  { id: 'p18', name: "Davidoff Cool Water Intense Eau De Parfum For Men", price: 5310, img: "https://www.perfume24x7.com/cdn/shop/products/Davidoff_Coolwater_Intense_EDP_For_Men_125ml_408eaebd-181f-4b79-b6da-2ac94f38f8d9.jpg?v=1599652957&width=1800" },
+  { id: 'p19', name: "FCUK Friction Eau De Toilette For Men 100ml", price: 2500, img: "https://www.perfume24x7.com/cdn/shop/files/fcukfrictionperfume.jpg?v=1692609474&width=1800" },
+  { id: 'p20', name: "Ferrari Black Eau De Toilette For Men", price: 3150, img: "https://www.perfume24x7.com/cdn/shop/products/FerrariBlackEdt.jpg?v=1621945619&width=1800	" }
+
+  
+  
+];
+
+/* cart persisted in localStorage */
+let cart = JSON.parse(localStorage.getItem('cart_demo')) || {}; // { productId: qty }
+
+function saveCart(){ localStorage.setItem('cart_demo', JSON.stringify(cart)); updateCartUI(); }
+
+function addToCart(id, qty=1){
+  cart[id] = (cart[id] || 0) + qty;
+  saveCart();
+  openCart();
+}
+
+function setQty(id, qty){
+  if(qty <= 0) delete cart[id]; else cart[id] = qty;
+  saveCart();
+}
+
+function cartItemsArray(){
+  return Object.entries(cart).map(([id, qty])=>{
+    const p = PRODUCTS.find(x=>x.id===id);
+    if(!p) return null;
+    return { ...p, qty: Number(qty), lineTotal: p.price * Number(qty) };
+  }).filter(Boolean);
+}
+
+function cartSubtotal(){
+  return cartItemsArray().reduce((s,i)=>s + i.lineTotal, 0);
+}
+
+/* render products */
+const productsEl = document.getElementById('products');
+
+/* Optionally fetch products from server (if you've set up products.php). If fetch fails, use local PRODUCTS. */
+(async function loadProducts(){
+  try {
+    const res = await fetch(PRODUCTS_ENDPOINT, { cache: "no-store" });
+    if(res.ok){
+      const srv = await res.json();
+      if(Array.isArray(srv) && srv.length) {
+        // replace PRODUCTS contents
+        PRODUCTS.length = 0;
+        srv.forEach(p=> PRODUCTS.push(p));
+      }
+    }
+  } catch(e){
+    /* ignore: use fallback PRODUCTS */
+  } finally {
+    renderProducts();
+  }
+})();
+
+function renderProducts(){
+  productsEl.innerHTML = '';
+  PRODUCTS.forEach(p=>{
+    const div = document.createElement('div');
+    div.className = 'card';
+    div.innerHTML = `
+      <div class="prod-img"><img src="${p.img}" alt="${p.name}" /></div>
+      <div class="prod-name">${p.name}</div>
+      <div class="price">${rupee(p.price)}</div>
+      <button class="add-btn">Add to cart</button>
+    `;
+    div.querySelector('.add-btn').addEventListener('click', ()=> addToCart(p.id));
+    productsEl.appendChild(div);
+  });
+}
+
+/* cart UI */
+const cartPanel = document.getElementById('cartPanel');
+const cartCount = document.getElementById('cartCount');
+const cartItems = document.getElementById('cartItems');
+const cartSubtotalEl = document.getElementById('cartSubtotal');
+
+function updateCartUI(){
+  const items = cartItemsArray();
+  cartCount.textContent = items.reduce((s,i)=>s+i.qty,0);
+  cartSubtotalEl.textContent = rupee(cartSubtotal());
+  cartItems.innerHTML = '';
+  if(items.length === 0){
+    cartItems.innerHTML = '<div class="small">Your cart is empty.</div>';
+    return;
+  }
+  items.forEach(it=>{
+    const el = document.createElement('div');
+    el.className = 'cart-item';
+    el.innerHTML = `
+      <img src="${it.img}" alt="${it.name}">
+      <div style="flex:1">
+        <div style="font-size:14px">${it.name}</div>
+        <div class="small">${rupee(it.price)} × ${it.qty} = <strong>${rupee(it.lineTotal)}</strong></div>
+        <div style="margin-top:8px" class="qty-control">
+          <button class="qty-btn" data-action="dec">−</button>
+          <div style="min-width:28px;text-align:center">${it.qty}</div>
+          <button class="qty-btn" data-action="inc">+</button>
+          <button class="qty-btn" data-action="remove" style="margin-left:8px">Remove</button>
+        </div>
+      </div>
+    `;
+    // attach handlers
+    el.querySelector('[data-action="inc"]').addEventListener('click', ()=>{ setQty(it.id, it.qty+1); });
+    el.querySelector('[data-action="dec"]').addEventListener('click', ()=>{ setQty(it.id, it.qty-1); });
+    el.querySelector('[data-action="remove"]').addEventListener('click', ()=>{ setQty(it.id, 0); });
+    cartItems.appendChild(el);
+  });
+}
+
+/* open/close cart */
+function openCart(){ cartPanel.classList.add('open'); cartPanel.setAttribute('aria-hidden','false'); updateCartUI(); }
+function closeCart(){ cartPanel.classList.remove('open'); cartPanel.setAttribute('aria-hidden','true'); }
+
+document.getElementById('openCartBtn').addEventListener('click', openCart);
+document.getElementById('closeCartBtn').addEventListener('click', closeCart);
+/* checkout */
+const checkoutBtn = document.getElementById('checkoutBtn');
+const modalBackdrop = document.getElementById('modalBackdrop');
+const checkoutForm = document.getElementById('checkoutForm');
+const checkoutTotalEl = document.getElementById('checkoutTotal');
+const cancelCheckout = document.getElementById('cancelCheckout');
+
+checkoutBtn.addEventListener('click', ()=>{
+  const total = cartSubtotal();
+  if(total <= 0){ alert('Cart is empty'); return; }
+  checkoutTotalEl.textContent = rupee(total);
+  document.getElementById('totalInput').value = total;
+  modalBackdrop.classList.add('open');
+});
+
+cancelCheckout.addEventListener('click', ()=> modalBackdrop.classList.remove('open'));
+
+modalBackdrop.addEventListener('click', (e)=>{
+  if(e.target === modalBackdrop) modalBackdrop.classList.remove('open');
+});
+
+/* submit checkout -> attempt to open UPI */
+checkoutForm.addEventListener('submit', async (e)=>{
+  e.preventDefault();
+  const formData = new FormData(checkoutForm);
+  const customerName = formData.get('customerName') || 'Customer';
+  const data = {
+    customerName,
+    mobile: formData.get('mobile'),
+    email: formData.get('email'),
+    address: formData.get('address'),
+    pincode: formData.get('pincode'),
+    items: cartItemsArray(),
+    total: cartSubtotal()
+  };
+
+  // Send to server (process_order.php) - safe fallback if server missing is ignored
+  try {
+    await fetch(PROCESS_ORDER_ENDPOINT, {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify(data)
+    }).then(r=>r.text()).catch(()=>null);
+  } catch(err){ /* ignore server save errors in demo */ }
+
+  // Build UPI deep link
+  const amount = Number(data.total).toFixed(2);
+  const upiParams = new URLSearchParams({
+    pa: MERCHANT_UPI,
+    pn: MERCHANT_NAME,
+    am: amount,
+    cu: 'INR',
+    tn: `Order from ${data.customerName}`
+  });
+  const upiLink = `upi://pay?${upiParams.toString()}`;
+
+  // Try to open the UPI link (mobile will open app). If that fails, show fallback info.
+  window.location.href = upiLink;
+
+  // After triggering the intent, also show a fallback alert with copyable info
+  setTimeout(()=> {
+    alert(`If UPI app didn't open, please pay ₹${amount} to ${MERCHANT_UPI} (UPI).\nReference: Order for ${data.customerName}`);
+    modalBackdrop.classList.remove('open');
+    // clear cart on success assumption
+    cart = {};
+    saveCart();
+    closeCart();
+    checkoutForm.reset();
+  }, 1200);
+});
+
+updateCartUI();
+</script>
+</body>
+</html>
